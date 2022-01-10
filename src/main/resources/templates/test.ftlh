@@ -1,4 +1,7 @@
 <html>
+<head>
+    <link rel="stylesheet" href="/static/main.css">
+</head>
 <body>
 <!-- see src/main/kotlin/odessa/templates/test -->
 <p>Hello ${username}!</p>
