@@ -5,10 +5,14 @@ repositories {
 
 plugins {
     kotlin("jvm") version "1.6.10"
+    application
+}
+
+application {
+    mainClass.set("odessa.App")
 }
 
 dependencies {
-// velocity
-// freemarker
-// thymeleaf
+    implementation("io.ktor:ktor-server-netty:1.6.4")
+    // freemarker
 }
