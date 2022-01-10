@@ -1,44 +1,28 @@
 package odessa
 
-import freemarker.template.Configuration
-import freemarker.template.Template
-import freemarker.template.TemplateExceptionHandler
-import java.io.File
-import java.io.OutputStreamWriter
-import java.io.Writer
-
-data class Event(
-    val url: String,
-    val name: String
-)
+import odessa.templates.Event
+import odessa.templates.TestData
+import odessa.templates.TestTemplate
 
 object App {
     @JvmStatic
     fun main(args: Array<String>) {
-        println("hello odessa")
-        
-        val cfg = buildConfig()
-    
-        val root = mutableMapOf<String, Any?>()
-        root["user"] = "Big Joe"
-        root["events"] = listOf(
-            Event(name = "Dance", url = "foobar.nl")
+        val engine = TemplateEngineFactory().build()
+
+        val output = TestTemplate.merge(
+            engine, TestData(
+                username = "Yana",
+                events = listOf(
+                    Event(
+                        name = "Ecstatic Boat 1",
+                        url = "http://odessa.com/1"
+                    )
+                )
+            )
         )
-        /* Get the template (uses cache internally) */
-        val temp: Template = cfg.getTemplate("test.ftlh")
-        /* Merge data-model with template */
-        val out: Writer = OutputStreamWriter(System.out)
-        temp.process(root, out)
-    }
-    
-    private fun buildConfig(): Configuration {
-        val cfg = Configuration() // Configuration.VERSION_2_3_29
-        cfg.setClassForTemplateLoading(App::class.java, "/templates")
-        cfg.defaultEncoding = "UTF-8"
-        cfg.templateExceptionHandler = TemplateExceptionHandler.RETHROW_HANDLER
-//        cfg.setLogTemplateExceptions(false)
-//        cfg.setWrapUncheckedExceptions(true)
-//        cfg.setFallbackOnNullLoopVariable(false)
-        return cfg
+        
+        println("=============")
+        println(output)
+        println("=============")
     }
 }
