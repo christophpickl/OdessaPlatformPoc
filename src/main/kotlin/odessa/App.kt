@@ -1,6 +1,6 @@
 package odessa
 
-import freemarker.cache.ClassTemplateLoader
+import freemarker.cache.FileTemplateLoader
 import io.ktor.application.call
 import io.ktor.application.install
 import io.ktor.freemarker.FreeMarker
@@ -17,18 +17,24 @@ import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import odessa.templates.Event
 import odessa.templates.TestData
+import java.io.File
 
 object App {
-    private val port = 8080
+    private const val port = 8080
     
     @JvmStatic
     fun main(args: Array<String>) {
         println("⭐ ️Starting webserver at: http://localhost:$port ⭐️")
-        
         embeddedServer(Netty, port = port) {
+            var clearFreemarkerCache = {}
             install(FreeMarker) {
-                templateLoader = ClassTemplateLoader(this::class.java.classLoader, "templates")
+//                templateLoader = ClassTemplateLoader(this::class.java.classLoader, "templates")
+                templateLoader = FileTemplateLoader(File("src/main/resources/templates"))
+                clearFreemarkerCache = {
+                    clearTemplateCache()
+                }
             }
+            
             routing {
                 static("/static") {
                     resources("static")
@@ -58,10 +64,10 @@ object App {
                         )
                     )
                     call.respond(FreeMarkerContent("test.ftlh", data.toMap()))
+                    clearFreemarkerCache()
                 }
             }
         }.start(wait = true)
-        // TODO reload template while server is running
         // TODO shutdown
     }
 }
