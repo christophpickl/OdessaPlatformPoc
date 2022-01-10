@@ -14,5 +14,5 @@ application {
 
 dependencies {
     implementation("io.ktor:ktor-server-netty:1.6.4")
-    // freemarker
+    implementation("freemarker:freemarker:2.3.9")
 }
