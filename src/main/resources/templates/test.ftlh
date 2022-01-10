@@ -4,10 +4,11 @@
 </head>
 <body>
 <!-- see src/main/kotlin/odessa/templates/test -->
-<p>Hello ${username}!</p>
+<p>Hello ${user.name}! (${user.tokens} ⭐️)</p>
 <ul>
 <#list events as event>
-    <li><a href="${event.url}">${event.name}</a></li>
+    <!-- check if event.url is not null, then render as link -->
+    <li>${event.title}</li>
 </#list>
 </ul>
 </body>

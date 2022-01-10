@@ -1,33 +1,27 @@
 package odessa
 
-import freemarker.cache.FileTemplateLoader
 import io.ktor.application.install
 import io.ktor.freemarker.FreeMarker
 import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
-import java.io.File
 
 object App {
-    private const val port = 8080
-    
     @JvmStatic
     fun main(args: Array<String>) {
-        println("⭐ ️Starting webserver at: http://localhost:$port ⭐️")
-        embeddedServer(Netty, port = port) {
-            var clearFreemarkerCache = {}
+        start(LocalAppConfig)
+    }
+    
+    private fun start(appConfig: AppConfig) {
+        println("⭐ Starting webserver at: http://localhost:${appConfig.port} ⭐️")
+        
+        embeddedServer(Netty, port = appConfig.port) {
             install(FreeMarker) {
-//                templateLoader = ClassTemplateLoader(this::class.java.classLoader, "templates")
-                templateLoader = FileTemplateLoader(File("src/main/resources/templates"))
-                clearFreemarkerCache = {
-                    clearTemplateCache()
-                }
+                appConfig.configureFreemarker(this)
             }
-            
             routing {
-                installRoutes(clearFreemarkerCache)
+                installRoutes(appConfig)
             }
         }.start(wait = true)
-        // TODO shutdown
     }
 }
