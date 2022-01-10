@@ -14,7 +14,6 @@ object App {
     
     private fun start(appConfig: AppConfig) {
         println("⭐ Starting webserver at: http://localhost:${appConfig.port} ⭐️")
-        
         embeddedServer(Netty, port = appConfig.port) {
             install(FreeMarker) {
                 appConfig.configureFreemarker(this)
