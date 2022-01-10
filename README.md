@@ -2,6 +2,14 @@
 
 Proof-of-Concept for the Odessa platform idea.
 
+## Todos
+
+Christoph:
+* N/A
+
+Yana:
+* use includes in templates
+
 ## How to write templates
 
 * See FreeMarker templates: `src/main/resources/templates`
