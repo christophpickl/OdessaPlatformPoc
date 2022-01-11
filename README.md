@@ -2,7 +2,7 @@
 
 Proof-of-Concept for the Odessa platform idea.
 
-See [documentation](blob/main/doc/index.md) for more details
+See [documentation](doc) for more details.
 
 https://github.com/christophpickl/OdessaPlatformPoc
 
