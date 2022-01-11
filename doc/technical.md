@@ -11,4 +11,4 @@
 * Programming Language: Kotlin
 * Webserver: Ktor
 * Templating engine: [Freemarker](https://freemarker.apache.org/)
-  ** Alternatives: Velocity, Thymeleaf
+  * Alternatives: [Velocity](https://velocity.apache.org/), [Thymeleaf](https://www.thymeleaf.org/)
