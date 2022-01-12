@@ -2,29 +2,33 @@
 
 ## Who are we?
 
-* Dance & Co
+* Dancers & Co
+* Boat, Pirates
 * Community, Tribal, Home, Bond
 * Personal (rather Professional)
-* Conscious, Spiritiual
-* Vegan
+* Conscious, Spiritiual, Esoteric
+* Vegan, Ecologists
 
-## What is the target audience?
+## What is the target group?
 
-* Hippies, New Age, Free Spirits
-    * Seeking for connection
+* Hippies, New Age People, Free Spirits
+    * Seeking for connection (to something bigger/heavenly divine)
     * Nature - Green
     * Natural - Beige, Pastel Colors
-    * Earth - Yellow, Brownish
+    * Earth - Yellow, Brown
 * Youngsters
     * Seeking for oneself
     * Belonging
 * Healing
     * Seeking for meaning
-    * Pain, trauma
+    * Pain, Trauma
 
-## Other qualities?
+## Other Qualities?
 
-* Magical - Stars, Wonder
-* Acceptance - Round, Soft
-* Feminine - Curved
-* Kind, Loving, Open-Hearted - Red
+* Feminine - Curved, Round, Soft
+* Kind, Loving, Open-Hearted - Red, Warm
+* ✨ Magical - Stars, Wonder
+* Acceptance, Welcome
+* Candles, Fire
+* Cacao, Ceremony
+* Tantra, Yoga

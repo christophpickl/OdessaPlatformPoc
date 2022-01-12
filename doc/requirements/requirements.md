@@ -58,3 +58,10 @@ fine-tuning) to come up with the final "payout list".
 * An admin can manually modify token balance.
 
 ![Sketch 1](sketch1.jpg "A first sketch")
+
+## Misc Insights
+
+* The event participation with the search for non-team members is the only (client-side) complex page
+* No registration: Admin is creating all users
+* In total there will be around 100 spaceholders, 10 spacepirates, 3 admins
+* Alternative name for "token"? E.g.: Coin?
