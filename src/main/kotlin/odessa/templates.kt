@@ -12,6 +12,6 @@ suspend fun ApplicationCall.respondFreemarker(file: TemplateFile, data: Any?) {
 enum class TemplateFile(
     val path: String
 ) {
-    Home("home.ftl"),
+    Login("login.ftl"),
     Test("test.ftl")
 }

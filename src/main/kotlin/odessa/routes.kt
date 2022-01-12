@@ -36,7 +36,7 @@ fun Routing.installRoutes(appConfig: AppConfig) {
     }
     
     get("/") {
-        call.respondFreemarker(TemplateFile.Home, null)
+        call.respondFreemarker(TemplateFile.Login, null)
         appConfig.clearFreemarkerCache()
     }
     
