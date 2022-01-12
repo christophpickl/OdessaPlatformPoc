@@ -33,7 +33,7 @@
 3. Presence Planning
     1. Self (Un)Register
     2. Admin Mgmt
-    3. Alert Notification
+    3. Notification System
 
 ## Dreams and Visions
 
