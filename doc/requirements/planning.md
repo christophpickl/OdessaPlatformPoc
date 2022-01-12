@@ -1,5 +1,22 @@
 # Planning
 
+Roadmap:
+
+1. Warmup:
+    1. Define identity, colors, feeling, atmosphere
+    1. Define requirements (scenarios, usecases, diagrams)
+1. Set the Stage:
+    1. Create wiremocks
+    1. Create designs
+1. Realization:
+    1. Define data interface
+    1. Implement templates
+    1. Implement logic
+1. Presentation:
+    1. Get feedback
+    1. Present
+    1. Go/No-Go decision
+
 ## Feature Milestons
 
 1. CRUD Basics
