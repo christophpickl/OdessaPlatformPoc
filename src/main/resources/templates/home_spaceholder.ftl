@@ -1,6 +1,6 @@
 <html>
 <body>
-<h1>Home for Spaceholder ${user.name}</h1>
+<h1>Home for Spaceholder ${user.email}</h1>
 Content:
 <ul>
     <li>His user details: Picture, Name, Team-membership, token balance</li>

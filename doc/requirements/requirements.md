@@ -1,7 +1,7 @@
 # Requirements
 
 **Overall goal**: Spaceholders can volunteer at events and receive tokens ("token economy") for that.
-These can be used to exchange as an entrance ticket to other events.
+These can be used to exchange as an entrance ticket to other events. All to motivate to spacehold more, reward system. (Maybe in the future, people also give workshops for a bigger token reward)
 
 **Overall description**: Spaceholders are like regular user. They are grouped into teams, and each team
 has a team leader, a so-called "Spacepirate". Only a spacepirate can assign spaceholders to events (receive tokens).
@@ -12,6 +12,16 @@ himself on a list of "I will be there". This list will be then afterwards used b
 fine-tuning) to come up with the final "payout list".
 
 ## Use Cases
+
+### Main Scenario Flow
+
+1. Spaceholder registers to show up at an event.
+2. Spacepirate confirms afterwards (payout of tokens).
+3. Spaceholder requests exchange event ticket for tokens.
+4. Admin sees new request and confirms.
+5. Spaceholder receives notification that it was confirmed.
+
+### Scenarios
 
 * Scenario: Check tokens.
     * Given I'm logged in as a spaceholder
@@ -58,6 +68,12 @@ fine-tuning) to come up with the final "payout list".
 * An admin can manually modify token balance.
 
 ![Sketch 1](sketch1.jpg "A first sketch")
+
+## Technical
+
+* It should look'n'feel like a regular, native MobileApp (Odessa people use phones, not computers)
+* It should be implemented in regular web technologies
+* See for example: https://app.starbucks.com
 
 ## Misc Insights
 

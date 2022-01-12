@@ -19,12 +19,12 @@
 
 ## Feature Milestons
 
-1. CRUD (CreateReadUpdateDelete) Basics
-    1. User login/auth
-    2. User Mgmt
-    3. Team Mgmt
-    4. Event Mgmt
-    4. Exchange Requests Mgmt
+1. Basics
+    1. User login
+    2. ~~User Mgmt~~
+    3. ~~Team Mgmt~~
+    4. ~~Event Mgmt~~
+    4. Home pages
 2. Token Economy
     1. History
     2. Spaceholding Participation

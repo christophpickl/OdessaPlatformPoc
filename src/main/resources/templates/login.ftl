@@ -1,6 +1,6 @@
 <html>
 <body>
-<h1>Login</h1>
+<h1>Odessa Platform - Login</h1>
 
 enter as email: a=spaceholder, b=spacepirate, c=admin (password will be ignored)
 

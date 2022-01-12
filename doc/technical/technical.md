@@ -1,11 +1,5 @@
 # Technical
 
-## Goals
-
-* It should look'n'feel like a regular, native MobileApp (Odessa people use phones, not computers)
-* It should be implemented in regular web technologies
-* See for example: https://app.starbucks.com
-
 ## How-to write templates
 
 * See FreeMarker templates: `src/main/resources/templates`

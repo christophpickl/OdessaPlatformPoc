@@ -41,7 +41,7 @@ fun Routing.installRoutes(appConfig: AppConfig) {
         appConfig.clearFreemarkerCache()
     }
     
-    post("/") {
+    post("/") { // login
         val params = call.receiveParameters()
         val email = params["email"] ?: ""
         val user = Repository.findUserByShortId(email)
