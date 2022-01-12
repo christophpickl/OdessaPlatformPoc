@@ -2,15 +2,23 @@ package odessa.templates
 
 import java.time.LocalDateTime
 
-data class User(
-    val name: String,
-    val tokens: Int,
-)
+interface TemplateDataRoot
+interface TemplateData
 
-data class Event(
+data class UserTD(
+    val name: String,
+    val email: String,
+    val tokens: Int,
+): TemplateData {
+    companion object
+}
+
+data class EventTD(
     val title: String,
     val startDate: LocalDateTime,
     val tokensCost: Int?,
     val tokensGain: Int?,
     val url: String?
-)
+): TemplateData {
+    companion object
+}

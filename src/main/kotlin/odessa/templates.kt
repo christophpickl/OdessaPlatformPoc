@@ -13,5 +13,8 @@ enum class TemplateFile(
     val path: String
 ) {
     Login("login.ftl"),
+    HomeSpaceholder("home_spaceholder.ftl"),
+    HomeSpacepirate("home_spacepirate.ftl"),
+    HomeAdmin("home_admin.ftl"),
     Test("test.ftl")
 }

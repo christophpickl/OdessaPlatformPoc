@@ -2,9 +2,13 @@
 <body>
 <h1>Login</h1>
 
-<input type="text" placeholder="email"/><br/>
-<input type="text" placeholder="password"/><br/>
-<input type="submit" value="Login">
+enter as email: a=spaceholder, b=spacepirate, c=admin (password will be ignored)
+
+<form method="post" action="/">
+    <input type="text" name="email" placeholder="E-Mail"/><br/>
+    <input type="text" name="password" placeholder="Password"/><br/>
+    <input type="submit" value="Login">
+</form>
 
 <hr />
 <a href="/test">test page</a>

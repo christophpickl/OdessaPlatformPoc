@@ -1,34 +1,23 @@
 package odessa
 
+import io.ktor.application.ApplicationCall
 import io.ktor.application.call
 import io.ktor.http.content.static
+import io.ktor.request.receiveParameters
 import io.ktor.routing.Routing
 import io.ktor.routing.get
-import odessa.templates.Event
-import odessa.templates.TestData
-import odessa.templates.User
-import java.time.LocalDateTime
+import io.ktor.routing.post
+import io.ktor.sessions.sessions
+import odessa.templates.EventTD
+import odessa.templates.HomeTDR
+import odessa.templates.TestTDR
+import odessa.templates.UserTD
+import odessa.templates.some
+import odessa.templates.yana
 
-val userYana = User(
-    name = "Yana",
-    tokens = 21
-)
-
-val eventDance = Event(
-    title = "Ecstatic Dance",
-    startDate = LocalDateTime.parse("2020-01-13T18:30:00"),
-    url = null,
-    tokensCost = 5,
-    tokensGain = 2
-)
-
-val eventTantra = Event(
-    title = "Tantric Massage",
-    url = "http://odessa.com/tantric",
-    startDate = LocalDateTime.parse("2020-01-25T14:00:00"),
-    tokensCost = 30,
-    tokensGain = null
-)
+object KtorConstants {
+    const val sessionID = "user_session2"
+}
 
 fun Routing.installRoutes(appConfig: AppConfig) {
     static("/static") {
@@ -36,16 +25,59 @@ fun Routing.installRoutes(appConfig: AppConfig) {
     }
     
     get("/") {
+        val session = call.sessions.get(KtorConstants.sessionID) as UserSession?
+        if (session == null) {
+            call.respondFreemarker(TemplateFile.Login, null)
+        } else {
+            val user = Repository.getUserByEmail(session.email)
+            call.respondHomeFor(user)
+        }
+        appConfig.clearFreemarkerCache()
+    }
+    
+    get("/logout") {
+        call.sessions.clear(KtorConstants.sessionID)
         call.respondFreemarker(TemplateFile.Login, null)
         appConfig.clearFreemarkerCache()
     }
     
+    post("/") {
+        val params = call.receiveParameters()
+        val email = params["email"] ?: ""
+        val user = Repository.findUserByShortId(email)
+        if (user == null) {
+            call.respondFreemarker(TemplateFile.Login, null)
+        } else {
+            call.sessions.set(KtorConstants.sessionID, UserSession(user.email))
+            call.respondHomeFor(user)
+        }
+        appConfig.clearFreemarkerCache()
+    }
+    
     get("/test") {
-        val data = TestData(
-            user = userYana,
-            events = listOf(eventDance, eventTantra)
+        val data = TestTDR(
+            user = UserTD.yana,
+            events = EventTD.some
         )
         call.respondFreemarker(TemplateFile.Test, data)
         appConfig.clearFreemarkerCache()
     }
 }
+
+private suspend fun ApplicationCall.respondHomeFor(user: User) {
+    val templateFile = when (user.role) {
+        UserRole.Spaceholder -> TemplateFile.HomeSpaceholder
+        UserRole.Spacepirate -> TemplateFile.HomeSpacepirate
+        UserRole.Admin -> TemplateFile.HomeAdmin
+    }
+    val homeTdr = HomeTDR(
+        user = user.toUserTD()
+    )
+    respondFreemarker(templateFile, homeTdr)
+}
+
+private fun User.toUserTD() = UserTD(
+    name = name,
+    email = email,
+    tokens = tokens
+)

@@ -5,6 +5,12 @@ import io.ktor.freemarker.FreeMarker
 import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
+import io.ktor.sessions.Sessions
+import io.ktor.sessions.cookie
+
+data class UserSession(
+    val email: String,
+)
 
 object App {
     @JvmStatic
@@ -17,6 +23,9 @@ object App {
         embeddedServer(Netty, port = appConfig.port) {
             install(FreeMarker) {
                 appConfig.configureFreemarker(this)
+            }
+            install(Sessions) {
+                cookie<UserSession>(KtorConstants.sessionID)
             }
             routing {
                 installRoutes(appConfig)

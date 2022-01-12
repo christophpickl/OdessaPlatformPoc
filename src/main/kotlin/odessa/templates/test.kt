@@ -1,6 +1,6 @@
 package odessa.templates
 
-data class TestData(
-    val user: User,
-    val events: List<Event>
-)
+data class TestTDR(
+    val user: UserTD,
+    val events: List<EventTD>
+): TemplateDataRoot
