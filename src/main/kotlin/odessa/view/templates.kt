@@ -1,13 +1,17 @@
-package odessa
+package odessa.view
 
 import io.ktor.application.ApplicationCall
 import io.ktor.freemarker.FreeMarkerContent
 import io.ktor.response.respond
 
-
-suspend fun ApplicationCall.respondFreemarker(file: TemplateFile, data: Any?) {
-    respond(FreeMarkerContent(file.path, data))
+suspend fun ApplicationCall.respondTemplate(spec: TemplateSpec) {
+    respond(FreeMarkerContent(spec.file.path, spec.data))
 }
+
+data class TemplateSpec(
+    val file: TemplateFile,
+    val data: Any?
+)
 
 enum class TemplateFile(
     val path: String
@@ -15,6 +19,5 @@ enum class TemplateFile(
     Login("login.ftl"),
     HomeSpaceholder("home_spaceholder.ftl"),
     HomeSpacepirate("home_spacepirate.ftl"),
-    HomeAdmin("home_admin.ftl"),
-    Test("test.ftl")
+    HomeAdmin("home_admin.ftl")
 }

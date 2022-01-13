@@ -13,11 +13,24 @@ data class UserTD(
     companion object
 }
 
-data class EventTD(
-    val title: String,
-    val startDate: LocalDateTime,
+data class TeamEventTD(
+    val id: Int,
+    val name: String,
+    val begin: LocalDateTime,
     val tokensCost: Int?,
-    val tokensGain: Int?,
+    val tokensReward: Int?,
+    val url: String?,
+    val isAssisting: Boolean
+): TemplateData {
+    companion object
+}
+
+data class EventTD(
+    val id: Int,
+    val name: String,
+    val begin: LocalDateTime,
+    val tokensCost: Int?,
+    val tokensReward: Int?,
     val url: String?
 ): TemplateData {
     companion object

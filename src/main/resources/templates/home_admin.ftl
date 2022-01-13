@@ -1,4 +1,7 @@
 <html>
+<head>
+    <#include "includes/header.ftl">
+</head>
 <body>
 <h1>Home for Admin ${user.name}</h1>
 
@@ -10,6 +13,9 @@ Content:
     <li>Process exchange requests (active, confirmed, declined)</li>
 </ul>
 <br/>
+
+<#include "includes/team_events.ftl">
+
 <hr/>
 <a href="/logout">Logout</a>
 </body>

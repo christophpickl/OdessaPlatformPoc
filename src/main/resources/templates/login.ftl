@@ -1,4 +1,7 @@
 <html>
+<head>
+    <#include "includes/header.ftl">
+</head>
 <body>
 <h1>Odessa Platform - Login</h1>
 
@@ -10,7 +13,5 @@ enter as email: a=spaceholder, b=spacepirate, c=admin (password will be ignored)
     <input type="submit" value="Login">
 </form>
 
-<hr />
-<a href="/test">test page</a>
 </body>
 </html>

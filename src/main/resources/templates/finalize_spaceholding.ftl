@@ -1,4 +1,7 @@
 <html>
+<head>
+    <#include "includes/header.ftl">
+</head>
 <body>
 <h1>Finalize spaceholding</h1>
 
