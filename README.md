@@ -9,8 +9,12 @@ https://github.com/christophpickl/OdessaPlatformPoc
 ## Todos
 
 * [x] Setup basic project setup
-* [ ] Sketch requirements for PoC
+* [x] Sketch requirements for PoC
+* [ ] Rework pitch slides: Make it comic style, conversation
 * [ ] Design wiremocks
-* [ ] Implement templates
+* [ ] Implement frontend
+    * [ ] Research Ajax calls
 * [ ] Implement logic
+    * [ ] Deploy to heroku
+    * [ ] Implement Android/iOS webview
 * [ ] Present to Odessa

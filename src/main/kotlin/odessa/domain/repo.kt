@@ -9,21 +9,24 @@ object UserRepository {
         name = "Yana",
         email = "yana@odessa.com",
         tokens = 50,
-        role = UserRole.Spaceholder
+        role = UserRole.Spaceholder,
+        lastLogin = null,
     )
     val userChristoph = User(
         id = 2,
         name = "Christoph",
         email = "christoph@odessa.com",
         tokens = 200,
-        role = UserRole.Spacepirate
+        role = UserRole.Spacepirate,
+        lastLogin = null,
     )
     val userAmber = User(
         id = 3,
         name = "Amber",
         email = "amber@odessa.com",
         tokens = 920,
-        role = UserRole.Admin
+        role = UserRole.Admin,
+        lastLogin = null,
     )
     
     private val users = listOf(

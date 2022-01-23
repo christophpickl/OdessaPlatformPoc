@@ -1,7 +1,10 @@
 # Requirements
 
-**Overall goal**: Spaceholders can volunteer at events and receive tokens ("token economy") for that.
-These can be used to exchange as an entrance ticket to other events. All to motivate to spacehold more, reward system. (Maybe in the future, people also give workshops for a bigger token reward)
+**Overall goals**:
+
+1. Motivation: Spaceholders can volunteer at events and receive tokens ("token economy") for that, which can exchanged as an entrance ticket/discount to events. All to motivate to spacehold more, reward system.
+2. Planning: Spaceholder's presence can be easily planned ahead and with help of automatisms simplified (notifications).
+3. Workload distribution: Volunteers are self-managed, shifting the work from admins (Amber) to pirates/holders instead.
 
 **Overall description**: Spaceholders are like regular user. They are grouped into teams, and each team
 has a team leader, a so-called "Spacepirate". Only a spacepirate can assign spaceholders to events (receive tokens).

@@ -38,5 +38,5 @@
 ## Dreams and Visions
 
 * ? Communciation Board?
-* ? Event Incubator/Contribution?
+* ? Event Incubator/Contribution? (give workshops for bigger rewards)
 * ? 3rd Party Integration?

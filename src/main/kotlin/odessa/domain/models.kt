@@ -13,7 +13,9 @@ data class User(
     val name: String,
     val email: String,
     val tokens: Int,
-    val role: UserRole
+    val role: UserRole,
+    /** Useful to sort out dead zombies = people who didn't show up for very long time. */
+    val lastLogin: LocalDateTime?
 )
 
 data class Team(
