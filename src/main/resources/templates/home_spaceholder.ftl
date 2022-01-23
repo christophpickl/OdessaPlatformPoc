@@ -17,7 +17,10 @@ Content:
 <a href="javascript:notify('Notify me!')">Notify</a><br/>
 
 <!-- with import directive, we can create our own tags, and parametrize them even -->
+<!-- only render team events when user is associated with at least one team -->
 <#include "includes/team_events.ftl">
+
+<#include "includes/regular_events.ftl">
 
 <br/>
 <hr/>

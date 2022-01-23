@@ -13,25 +13,32 @@ data class UserTD(
     companion object
 }
 
-data class TeamEventTD(
-    val id: Int,
-    val name: String,
-    val begin: LocalDateTime,
+interface IEventTD {
+    val id: Int
+    val name: String
+    val begin: LocalDateTime
+}
+
+data class FutureTeamEventTD(
+    override val id: Int,
+    override val name: String,
+    override val begin: LocalDateTime,
     val tokensCost: Int?,
     val tokensReward: Int?,
     val url: String?,
-    val isAssisting: Boolean
-): TemplateData {
+    val isAssisting: Boolean,
+    val spaceholders: List<String>,
+): TemplateData, IEventTD {
     companion object
 }
 
 data class EventTD(
-    val id: Int,
-    val name: String,
-    val begin: LocalDateTime,
+    override val id: Int,
+    override val name: String,
+    override val begin: LocalDateTime,
     val tokensCost: Int?,
     val tokensReward: Int?,
     val url: String?
-): TemplateData {
+): TemplateData, IEventTD {
     companion object
 }

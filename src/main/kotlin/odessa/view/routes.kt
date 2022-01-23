@@ -5,10 +5,10 @@ import io.ktor.application.call
 import io.ktor.http.content.static
 import io.ktor.request.receiveParameters
 import io.ktor.routing.Routing
-import io.ktor.routing.delete
 import io.ktor.routing.get
 import io.ktor.routing.post
 import io.ktor.sessions.sessions
+import io.ktor.util.pipeline.PipelineContext
 import odessa.AppConfig
 
 private fun ApplicationCall.clearUserSession() {
@@ -26,6 +26,13 @@ object KtorConstants {
 }
 
 fun Routing.installRoutes(appConfig: AppConfig) {
+    suspend fun PipelineContext<Unit, ApplicationCall>.doLogin(userShortCode: String) {
+        val (templateSpec, userSession) = Controller.login(userShortCode)
+        call.userSession = userSession
+        call.respondTemplate(templateSpec)
+        appConfig.clearFreemarkerCache()
+    }
+    
     static("/static") {
         appConfig.configureStaticFolder(this)
     }
@@ -41,14 +48,17 @@ fun Routing.installRoutes(appConfig: AppConfig) {
         appConfig.clearFreemarkerCache()
     }
     
-    post("/") { // login
-        val params = call.receiveParameters()
-        val email = params["email"] ?: ""
+    get("/quickLogin") {
+        val userShortCode = call.parameters["userShortCode"]!!
         
-        val (templateSpec, userSession) = Controller.login(email)
-        call.userSession = userSession
-        call.respondTemplate(templateSpec)
-        appConfig.clearFreemarkerCache()
+        doLogin(userShortCode)
+    }
+    
+    post("/") {
+        val params = call.receiveParameters()
+        val email = params["email"] ?: "" // via POST form
+    
+        doLogin(email)
     }
     
     post("/events/{eventId}/plannedAssistance/add") {
@@ -64,5 +74,7 @@ fun Routing.installRoutes(appConfig: AppConfig) {
         call.respondTemplate(templateSpec)
         appConfig.clearFreemarkerCache()
     }
+    
+
 }
 

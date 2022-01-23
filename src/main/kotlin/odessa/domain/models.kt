@@ -10,6 +10,9 @@ enum class UserRole {
 
 data class User(
     val id: Int,
+    // first name
+    // last name
+    // nick name (defaults to first name if not set)
     val name: String,
     val email: String,
     val tokens: Int,
@@ -32,9 +35,11 @@ data class Event(
     val id: Int,
     val name: String,
     val begin: LocalDateTime,
+    val durationMinutes: Int,
     val tokensCost: Int?,
     val tokensReward: Int?,
-    val url: String?
+    val url: String?,
+    val notes: String
 )
 
 data class EventTeamRef(
