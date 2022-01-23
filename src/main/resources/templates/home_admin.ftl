@@ -15,6 +15,7 @@ Content:
 <br/>
 
 <#include "includes/team_events.ftl">
+<#include "includes/regular_events.ftl">
 
 <hr/>
 <a href="/logout">Logout</a>

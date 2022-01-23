@@ -7,8 +7,8 @@ import odessa.domain.Service
 import odessa.domain.User
 import odessa.domain.UserRepository
 import odessa.domain.UserRole
+import odessa.templates.FutureTeamEventTD
 import odessa.templates.HomeTDR
-import odessa.templates.TeamEventTD
 import odessa.templates.UserTD
 
 object Controller {
@@ -46,10 +46,16 @@ object Controller {
         TemplateSpec(user.role.toTemplateFile(), buildHomeTdr(user))
     
     private fun buildHomeTdr(user: User): HomeTDR {
-        val events = Service.enrichEventAndIsAssisting(user.id, Service.getTeamEventsForUser(user))
+        val events = Service.getFutureTeamEventsForUser(user)
+        val eventsAndIsAssisting = Service.enrichEventAndIsAssisting(user.id, events)
+        val eventsAndSpaceholders = Service.enrichEventAndSpaceholders(events)
         return HomeTDR(
             user = user.toUserTD(),
-            teamEvents = events.map { it.event.toTeamEventTD(it.isAssisting) }
+            teamEvents = events.map { event ->
+                val isAssisting = eventsAndIsAssisting[event]!!
+                val spaceholders = eventsAndSpaceholders[event]!!
+                event.toFutureTeamEventTD(isAssisting, spaceholders)
+            }
         )
     }
     
@@ -59,14 +65,15 @@ object Controller {
         UserRole.Admin -> TemplateFile.HomeAdmin
     }
     
-    private fun Event.toTeamEventTD(isAssisting: Boolean) = TeamEventTD(
+    private fun Event.toFutureTeamEventTD(isAssisting: Boolean, spaceholders: List<String>) = FutureTeamEventTD(
         id = id,
         name = name,
         begin = begin,
         tokensCost = tokensCost,
         tokensReward = tokensReward,
         url = url,
-        isAssisting = isAssisting
+        isAssisting = isAssisting,
+        spaceholders = spaceholders
     )
     
     private fun User.toUserTD() = UserTD(

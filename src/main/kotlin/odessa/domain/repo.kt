@@ -4,36 +4,8 @@ import mu.KotlinLogging.logger
 import java.time.LocalDateTime
 
 object UserRepository {
-    val userYana = User(
-        id = 1,
-        name = "Yana",
-        email = "yana@odessa.com",
-        tokens = 50,
-        role = UserRole.Spaceholder,
-        lastLogin = null,
-    )
-    val userChristoph = User(
-        id = 2,
-        name = "Christoph",
-        email = "christoph@odessa.com",
-        tokens = 200,
-        role = UserRole.Spacepirate,
-        lastLogin = null,
-    )
-    val userAmber = User(
-        id = 3,
-        name = "Amber",
-        email = "amber@odessa.com",
-        tokens = 920,
-        role = UserRole.Admin,
-        lastLogin = null,
-    )
     
-    private val users = listOf(
-        userYana,
-        userChristoph,
-        userAmber
-    )
+    private val users = mutableListOf(userYana, userChristoph, userAmber)
     
     fun findByShortId(shortId: String): User? =
         when (shortId) {
@@ -45,77 +17,48 @@ object UserRepository {
     
     fun getByEmail(email: String): User =
         users.firstOrNull { it.email == email } ?: throw Exception("User not found by email '$email'!")
+    
+    fun fetchUsers(userIds: List<Int>): List<User> =
+        userIds.map { userId ->
+            users.first { it.id == userId }
+        }
 }
 
 object TeamRepository {
-    val teamFriday = Team(
-        id = 1,
-        name = "Friday"
-    )
-    private val teams = listOf(
-        teamFriday
-    )
+    private val teams = mutableListOf(teamFriday)
+    
+    fun loadTeams(): List<Team> = teams
 }
 
 object UserTeamRefRepository {
-    private val refs = listOf(
-        UserTeamRef(
-            userId = UserRepository.userYana.id,
-            teamId = TeamRepository.teamFriday.id
-        )
-    )
+    private val refs = mutableListOf(yanaFriday, christophFriday)
     
     fun getTeamIdsForUser(userId: Int): List<Int> =
         refs.filter { it.userId == userId }.map { it.teamId }
 }
 
 object EventRepository {
-    val ecstaticDance1Event = Event(
-        id = 1,
-        name = "Ecstatic Dance Friday 1",
-        begin = LocalDateTime.parse("2022-01-14T19:00:00"),
-        tokensCost = 30,
-        tokensReward = 5,
-        url = "https://odessa.amsterdam/friday1"
-    )
-    val ecstaticDance2Event = Event(
-        id = 2,
-        name = "Ecstatic Dance Friday 2",
-        begin = LocalDateTime.parse("2022-01-21T19:00:00"),
-        tokensCost = 30,
-        tokensReward = 5,
-        url = "https://odessa.amsterdam/friday21"
-    )
     
-    private val yogaEvent = Event(
-        id = 3,
-        name = "Yoga Workshop",
-        begin = LocalDateTime.parse("2022-01-16T18:00:00"),
-        tokensCost = 100,
-        tokensReward = null,
-        url = null
-    )
-    private val events = listOf(
-        ecstaticDance1Event,
-        ecstaticDance2Event,
+    private val events = mutableListOf(
+        danceFriday1,
+        danceFriday2,
+        danceFriday3,
+        danceSaturday,
         yogaEvent
     )
     
-    fun getByIds(eventIds: List<Int>): List<Event> =
-        events.filter { eventIds.contains(it.id) }
+    fun getFutureEventsById(eventIds: List<Int>): List<Event> {
+        val now = LocalDateTime.now()
+        return events.filter { event ->
+            event.begin.isAfter(now)
+            eventIds.contains(event.id)
+        }
+    }
 }
 
+
 object EventTeamRefRepository {
-    private val refs = listOf(
-        EventTeamRef(
-            teamId = TeamRepository.teamFriday.id,
-            eventId = EventRepository.ecstaticDance1Event.id
-        ),
-        EventTeamRef(
-            teamId = TeamRepository.teamFriday.id,
-            eventId = EventRepository.ecstaticDance2Event.id
-        )
-    )
+    private val refs = mutableListOf(friday1, friday2)
     
     fun getEventIdsForTeams(teamIds: List<Int>): List<Int> =
         refs.filter { teamIds.contains(it.teamId) }.map { it.eventId }
@@ -129,7 +72,7 @@ object PlannedAssistanceRepository {
     fun add(assistance: PlannedAssistance) {
         log.debug { "add: $assistance" }
         assistances += assistance
-        userIdsByEventIds.getOrPut(assistance.eventId, { mutableListOf()}).add(assistance.userId)
+        userIdsByEventIds.getOrPut(assistance.eventId, { mutableListOf() }).add(assistance.userId)
     }
     
     fun remove(assistance: PlannedAssistance) {
@@ -139,5 +82,8 @@ object PlannedAssistanceRepository {
     
     fun computeEventIdAndIsAssisting(userId: Int, events: List<Event>): Map<Int, Boolean> =
         events.associate { it.id to (userIdsByEventIds[it.id]?.contains(userId) ?: false) }
+    
+    fun getUserIdsFor(eventId: Int): List<Int> =
+        userIdsByEventIds[eventId] ?: emptyList()
     
 }
