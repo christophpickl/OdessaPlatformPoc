@@ -72,6 +72,11 @@ fine-tuning) to come up with the final "payout list".
 
 ![Sketch 1](sketch1.jpg "A first sketch")
 
+## Figma Sketch
+
+* https://www.figma.com/file/v77q54o7dpcNDNWZVMOAe9/Odessa-Web-Application-Wireframe?node-id=0%3A1
+
+
 ## Technical
 
 * It should look'n'feel like a regular, native MobileApp (Odessa people use phones, not computers)
