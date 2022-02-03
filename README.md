@@ -18,3 +18,5 @@ https://github.com/christophpickl/OdessaPlatformPoc
     * [ ] Deploy to heroku
     * [ ] Implement Android/iOS webview
 * [ ] Present to Odessa
+* ad login, by default always "remember me"
+* ad event: location attribute (ship/mirror center); picture (like webpage)
