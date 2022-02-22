@@ -14,4 +14,4 @@ jobs:
     # https://github.com/marketplace/actions/execute-gradle-task
     - uses: OrangeLabs-moe/gradle-actions@v5.0-openjdk-11
       with:
-        args: test verify
+        args: test check
