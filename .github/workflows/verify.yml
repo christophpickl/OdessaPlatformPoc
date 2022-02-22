@@ -1,0 +1,17 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    # https://github.com/marketplace/actions/execute-gradle-task
+    - uses: OrangeLabs-moe/gradle-actions@v5.0-openjdk-11
+      with:
+        args: test verify
