@@ -4,7 +4,8 @@ Proof-of-Concept for the Odessa platform idea.
 
 See [documentation](doc) for more details.
 
-https://github.com/christophpickl/OdessaPlatformPoc
+* Online: https://odessa-platform-poc.herokuapp.com/
+* Sourcecode: https://github.com/christophpickl/OdessaPlatformPoc
 
 ## Todos
 

@@ -19,3 +19,9 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:1.2.6")
     implementation("io.github.microutils:kotlin-logging:2.0.6")
 }
+
+// invoked heroku
+tasks.register("stage") {
+    dependsOn("clean")
+    dependsOn("build")
+}
